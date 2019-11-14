@@ -18,15 +18,15 @@ if [[ -z "$INPUT_IMAGE_NAME" ]]; then
 	exit 1
 fi
 
-# Login to Docker Github Package Registry (docker.pkg.github.com)
-echo ${INPUT_GITHUB_PACKAGE_REGISTRY_PASSWORD} | docker login -u ${INPUT_GITHUB_PACKAGE_REGISTRY_LOGIN} --password-stdin docker.pkg.github.com
-
 # Set IMG_NAME & IMG_TAG
 IMG_NAME="docker.pkg.github.com/${GITHUB_REPOSITORY,,}/${INPUT_IMAGE_NAME}"
 IMG_TAG=$(echo "${GITHUB_SHA}" | cut -c1-12)
 
 # Build image
 docker build -t ${IMG_NAME}:${IMG_TAG} -f ${INPUT_DOCKERFILE_PATH:-Dockerfile} ${INPUT_BUILD_CONTEXT:-.}
+
+# Login to Docker Github Package Registry (docker.pkg.github.com)
+echo ${INPUT_GITHUB_PACKAGE_REGISTRY_PASSWORD} | docker login -u ${INPUT_GITHUB_PACKAGE_REGISTRY_LOGIN} --password-stdin docker.pkg.github.com
 
 # Push image
 docker push ${IMG_NAME}:${IMG_TAG}
