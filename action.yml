@@ -18,9 +18,9 @@ inputs:
     description: the full path (including the filename) to the dockerfile that you want to build
     require: false
 outputs:
-  IMAGE_SHA_NAME:
+  DOCKER_IMAGE_NAME:
     description: Docker image name
-  IMAGE_URL:
+  DOCKER_IMAGE_URL:
     description: Docker image URL in Github Package Registry
 branding:
   color: 'blue'
