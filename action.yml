@@ -12,10 +12,10 @@ inputs:
     description: name of the image.  Example - my_awesome_image
     require: true
   build_context:
-    description: the path in your repo that will serve as the build context. (default: '.')
+    description: the path in your repo that will serve as the build context.
     require: false
   dockerfile_path:
-    description: the full path (including the filename) to the dockerfile that you want to build (default: 'Dockerfile')
+    description: the full path (including the filename) to the dockerfile that you want to build
     require: false
 outputs:
   DOCKER_IMAGE_NAME:
