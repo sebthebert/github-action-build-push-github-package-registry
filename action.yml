@@ -3,19 +3,19 @@ description: Build and Push a Docker image to GitHub Package Registry
 author: Sebastien Thebert
 inputs:
   github_package_registry_login:
-    description: Login to connect to GithubPackage Registry.
+    description: Login to connect to Github Package Registry.
     required: true
   github_package_registry_password:
-    description: Password to connect to GithubPackage Registry.
+    description: Password (Personal access token) to connect to Github Package Registry.
     require: true
   image_name:
     description: name of the image.  Example - my_awesome_image
     require: true
   build_context:
-    description: the path in your repo that will serve as the build context
+    description: the path in your repo that will serve as the build context. (default: '.')
     require: false
   dockerfile_path:
-    description: the full path (including the filename) to the dockerfile that you want to build
+    description: the full path (including the filename) to the dockerfile that you want to build (default: 'Dockerfile')
     require: false
 outputs:
   DOCKER_IMAGE_NAME:
