@@ -20,10 +20,11 @@ fi
 
 # Set IMG_NAME & IMG_TAG
 IMG_NAME="docker.pkg.github.com/${GITHUB_REPOSITORY,,}/${INPUT_IMAGE_NAME}"
-if [[ ${GITHUB_REF} == "master" ]]; then
-	IMG_TAG=$(echo "${GITHUB_SHA}" | cut -c1-12)
+
+if [[ ${GITHUB_REF} == refs/tags/* ]]; then
+	IMG_TAG=$( echo ${GITHUB_REF##*/})
 else
-	IMG_TAG=${GITHUB_REF}
+	IMG_TAG=$(echo "${GITHUB_SHA}" | cut -c1-12)
 fi
 
 # Build image
